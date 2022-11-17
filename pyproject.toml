@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "celebot-groups"
+version = "0.1.0"
+description = ""
+authors = ["meehighlov"]
+readme = "README.md"
+packages = [{include = "celebot_groups"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+python-telegram-bot = "^13.14"
+python-dotenv = "^0.21.0"
+pydantic = "^1.10.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
