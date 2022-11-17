@@ -15,6 +15,8 @@ def is_auth_user(user_id: int) -> bool:
 def auth(set_user=False):
 
     def auth_handling(handler):
+
+        @wraps(handler)
         def check_username(update: Update, context: CallbackContext, *args, **kwargs):
 
             user_id = update.message.from_user.id
