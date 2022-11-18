@@ -19,6 +19,7 @@ from telegram.ext import (
 
 from handlers.help import handle as help_command_handler
 from handlers.start import handle as start_command_handler
+from handlers.code import handle as code_command_handler
 
 
 def main() -> None:
@@ -26,8 +27,9 @@ def main() -> None:
 
     dispatcher = updater.dispatcher
 
-    dispatcher.add_handler(CommandHandler("start", start_command_handler))
-    dispatcher.add_handler(CommandHandler("help", help_command_handler))
+    dispatcher.add_handler(CommandHandler('start', start_command_handler))
+    dispatcher.add_handler(CommandHandler('help', help_command_handler))
+    dispatcher.add_handler(code_command_handler)
 
     updater.start_polling()
     updater.idle()
