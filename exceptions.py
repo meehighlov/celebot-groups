@@ -16,7 +16,7 @@ def handle_any_error(handler):
         except Exception as e:
             context.bot.send_message(
                 chat_id=update.message.chat_id,
-                text="Somethig went wrong 😅 Maybe you mistype?"
+                text="Ooops, there is a problem occured, i'm working on it 😅"
             )
             log(str(e))
 

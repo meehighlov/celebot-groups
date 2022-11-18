@@ -1,5 +1,6 @@
 import random
 import datetime
+from database.create import rollout as init_db
 
 import pytz
 from telegram import Update
@@ -23,6 +24,8 @@ from handlers.code import handle as code_command_handler
 
 
 def main() -> None:
+    init_db(config.APP_NAME)
+
     updater = Updater(config.BOTTOKEN_CELEBOT)
 
     dispatcher = updater.dispatcher
