@@ -11,3 +11,7 @@ class User:
     def get(cls, id: int) -> t.Optional['User']:
         # select * from user where id = $id; -> cls(...)
         return
+
+    def save(self) -> 'User':
+        # update user ... on conflict do nothig
+        return self
