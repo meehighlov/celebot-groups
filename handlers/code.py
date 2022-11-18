@@ -73,4 +73,5 @@ handle = ConversationHandler(
         ],
     },
     fallbacks=[MessageHandler(Filters.text, fallback)],
+    allow_reentry=True,
 )
