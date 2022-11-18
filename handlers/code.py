@@ -16,7 +16,6 @@ def handle_entry_point(update: Update, context: CallbackContext) -> int:
     context.bot.send_message(
         chat_id=update.message.chat_id,
         text='Enter access code',
-        reply_markup=ForceReply(),
     )
 
     return CommandCodeStates.CHECK
