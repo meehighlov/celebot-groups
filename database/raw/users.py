@@ -1,9 +1,9 @@
 from database.query import Query
 
 
-def create_user_query(id_: int, name: str, tgusername: str, chatid: int, birthday: str = '', isadmin: int = 0) -> Query:
+def create_user_query(id: int, name: str, tgusername: str, chatid: int, birthday: str = '', isadmin: int = 0) -> Query:
     bound_params = {
-        'id': id_,
+        'id': id,
         'name': name,
         'tgusername': tgusername,
         'chatid': str(chatid),

@@ -1,5 +1,5 @@
 import typing as t
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 
 
 @dataclass
@@ -19,3 +19,6 @@ class User:
     def birth_day(self) -> t.Optional[str]:
         if self.birthday != '':
             return self.birthday
+    
+    def as_dict(self) -> dict:
+        return asdict(self)

@@ -11,6 +11,7 @@ class Config(BaseSettings):
     BOTTOKEN_CELEBOT: str  # noqa
     ADMINCODE: str
     CLUBCODE: str
+    CONVERSATION_TIMEOUT: float = 60.0
 
 
 config = Config()

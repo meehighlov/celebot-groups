@@ -7,3 +7,7 @@ class StaticMessages(str, Enum):
 
 class CommandCodeStates(str, Enum):
     CHECK = 1
+
+
+class CommandSetmeStates(str, Enum):
+    SET = 1
