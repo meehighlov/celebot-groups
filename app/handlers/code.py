@@ -1,4 +1,4 @@
-from telegram import Update, ForceReply
+from telegram import Update
 from telegram.ext import (
     CommandHandler,
     ConversationHandler,

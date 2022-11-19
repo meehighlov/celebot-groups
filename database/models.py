@@ -14,3 +14,8 @@ class User:
     @property
     def is_admin(self):
         return self.isadmin == 1
+
+    @property
+    def birth_day(self) -> t.Optional[str]:
+        if self.birthday != '':
+            return self.birthday
