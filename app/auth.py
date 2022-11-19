@@ -12,7 +12,7 @@ def is_auth_user(user_id: int) -> bool:
     return user is not None
 
 
-def auth(set_user=False):
+def auth(set_user: bool):
 
     def auth_handling(handler):
 

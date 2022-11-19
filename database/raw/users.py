@@ -1,9 +1,9 @@
 from database.query import Query
 
 
-def create_user_query(id_: int, name: str, tgusername: str, chatid: int, birthday: str = '', isadmin: int = 0) -> Query:
+def create_user_query(id: int, name: str, tgusername: str, chatid: int, birthday: str = '', isadmin: int = 0) -> Query:
     bound_params = {
-        'id': id_,
+        'id': id,
         'name': name,
         'tgusername': tgusername,
         'chatid': str(chatid),
@@ -35,4 +35,14 @@ def get_user_by_id_query(id_: int) -> Query:
         bound_params,
     )
  
+    return query
+
+
+def get_all_users_query() -> Query:
+    query = Query(
+        '''
+        SELECT id, name, tgusername, chatid, birthday, isadmin FROM user;
+        '''
+    )
+
     return query
