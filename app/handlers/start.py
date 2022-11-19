@@ -1,7 +1,7 @@
 from telegram import Update
 from telegram.ext import CallbackContext
 
-from enums import StaticMessages
+from app.enums import StaticMessages
 
 
 def handle(update: Update, context: CallbackContext):

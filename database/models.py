@@ -5,13 +5,12 @@ from dataclasses import dataclass
 @dataclass
 class User:
     id: int
-    is_admin: bool
+    name: str 
+    tgusername: str
+    chatid: str
+    birthday: str
+    isadmin: int
 
-    @classmethod
-    def get(cls, id: int) -> t.Optional['User']:
-        # select * from user where id = $id; -> cls(...)
-        return
-
-    def save(self) -> 'User':
-        # update user ... on conflict do nothig
-        return self
+    @property
+    def is_admin(self):
+        return self.isadmin == 1

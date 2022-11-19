@@ -1,28 +1,19 @@
-import random
-import datetime
+from database.create import rollout as init_db
 
-import pytz
-from telegram import Update
-from telegram.ext import Updater, CommandHandler, CallbackContext
+from telegram.ext import Updater, CommandHandler
 
-from config import config
-# from exceptions import handle_any_error
+from app.config import config
 
-from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
-from telegram.ext import (
-    CommandHandler,
-    ContextTypes,
-    ConversationHandler,
-    MessageHandler,
-    filters,
-)
+from telegram.ext import CommandHandler
 
-from handlers.help import handle as help_command_handler
-from handlers.start import handle as start_command_handler
-from handlers.code import handle as code_command_handler
+from app.handlers.help import handle as help_command_handler
+from app.handlers.start import handle as start_command_handler
+from app.handlers.code import handle as code_command_handler
 
 
 def main() -> None:
+    init_db()
+
     updater = Updater(config.BOTTOKEN_CELEBOT)
 
     dispatcher = updater.dispatcher

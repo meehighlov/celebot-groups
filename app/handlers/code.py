@@ -6,10 +6,10 @@ from telegram.ext import (
     MessageHandler,
     Filters,
 )
-from config import config
+from app.config import config
 from database.ext.users import save_user
 
-from enums import CommandCodeStates
+from app.enums import CommandCodeStates
 
 
 def handle_entry_point(update: Update, context: CallbackContext) -> int:
@@ -33,16 +33,15 @@ def admin_code(update: Update, context: CallbackContext) -> int:
     user = update.message.from_user
 
     save_user(
-        id=user.id,
-        name=user.name,
-        first_name=user.first_name,
-        last_name=user.last_name,
-        full_name=user.full_name,
-        is_admin=True,
+        id_=user.id,
+        name=user.full_name,
+        tgusername=user.name,
+        chatid=update.message.chat_id,
+        isadmin=1,
     )
 
     context.bot.send_message(chat_id=update.message.chat_id, text=message)
-    
+
     return ConversationHandler.END
 
 
@@ -51,12 +50,10 @@ def club_code(update: Update, context: CallbackContext) -> int:
     user = update.message.from_user
 
     save_user(
-        id=user.id,
-        name=user.name,
-        first_name=user.first_name,
-        last_name=user.last_name,
-        full_name=user.full_name,
-        is_admin=True,
+        id_=user.id,
+        name=user.full_name,
+        tgusername=user.name,
+        chatid=update.message.chat_id,
     )
 
     context.bot.send_message(chat_id=update.message.chat_id, text=message)
