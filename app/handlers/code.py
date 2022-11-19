@@ -30,9 +30,9 @@ def fallback(update: Update, context: CallbackContext) -> int:
 
 def admin_code(update: Update, context: CallbackContext) -> int:
     message = 'Hello, mister admin 😎 Type /help to see all available commands'
-    tg_user = update.message.from_user.id
+    tg_user = update.message.from_user
 
-    user = get_user_by_id(tg_user)
+    user = get_user_by_id(tg_user.id)
 
     if not user:
         save_user(
