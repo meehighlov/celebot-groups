@@ -6,10 +6,10 @@ from telegram.ext import (
     MessageHandler,
     Filters,
 )
-from config import config
+from app.config import config
 from database.ext.users import save_user
 
-from enums import CommandCodeStates
+from app.enums import CommandCodeStates
 
 
 def handle_entry_point(update: Update, context: CallbackContext) -> int:

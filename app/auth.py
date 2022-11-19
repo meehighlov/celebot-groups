@@ -3,7 +3,7 @@ from functools import wraps
 from telegram import Update
 from telegram.ext import  CallbackContext
 
-from config import config
+from app.config import config
 from database.ext.users import get_user_by_id
 
 

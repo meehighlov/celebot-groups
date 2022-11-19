@@ -6,7 +6,7 @@ import pytz
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
 
-from config import config
+from app.config import config
 # from exceptions import handle_any_error
 
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
@@ -18,9 +18,9 @@ from telegram.ext import (
     filters,
 )
 
-from handlers.help import handle as help_command_handler
-from handlers.start import handle as start_command_handler
-from handlers.code import handle as code_command_handler
+from app.handlers.help import handle as help_command_handler
+from app.handlers.start import handle as start_command_handler
+from app.handlers.code import handle as code_command_handler
 
 
 def main() -> None:
