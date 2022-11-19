@@ -36,3 +36,13 @@ def get_user_by_id_query(id_: int) -> Query:
     )
  
     return query
+
+
+def get_all_users_query() -> Query:
+    query = Query(
+        '''
+        SELECT id, name, tgusername, chatid, birthday, isadmin FROM user;
+        '''
+    )
+
+    return query

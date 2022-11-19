@@ -7,7 +7,7 @@ from telegram.ext import (
     Filters,
 )
 from app.config import config
-from database.ext.users import save_user
+from database.ext.users import get_user_by_id, save_user
 
 from app.enums import CommandCodeStates
 
@@ -30,15 +30,21 @@ def fallback(update: Update, context: CallbackContext) -> int:
 
 def admin_code(update: Update, context: CallbackContext) -> int:
     message = 'Hello, mister admin 😎 Type /help to see all available commands'
-    user = update.message.from_user
+    tg_user = update.message.from_user.id
 
-    save_user(
-        id_=user.id,
-        name=user.full_name,
-        tgusername=user.name,
-        chatid=update.message.chat_id,
-        isadmin=1,
-    )
+    user = get_user_by_id(tg_user)
+
+    if not user:
+        save_user(
+            id=tg_user.id,
+            name=tg_user.full_name,
+            tgusername=tg_user.name,
+            chatid=update.message.chat_id,
+            isadmin=1,
+        )
+    else:
+        user.isadmin = 1
+        save_user(**user.as_dict())
 
     context.bot.send_message(chat_id=update.message.chat_id, text=message)
 
@@ -47,14 +53,20 @@ def admin_code(update: Update, context: CallbackContext) -> int:
 
 def club_code(update: Update, context: CallbackContext) -> int:
     message = 'You rock 🥳 Type /help to see all available commands'
-    user = update.message.from_user
+    tg_user = update.message.from_user
 
-    save_user(
-        id_=user.id,
-        name=user.full_name,
-        tgusername=user.name,
-        chatid=update.message.chat_id,
-    )
+    user = get_user_by_id(tg_user.id)
+
+    if not user:
+        save_user(
+            id=tg_user.id,
+            name=tg_user.full_name,
+            tgusername=tg_user.name,
+            chatid=update.message.chat_id,
+        )
+    else:
+        user.isadmin = 0
+        save_user(**user.as_dict())
 
     context.bot.send_message(chat_id=update.message.chat_id, text=message)
 
