@@ -1,7 +1,7 @@
 from database.query import Query
 
 
-def create_user_query(id: int, name: str, tgusername: str, chatid: int, birthday: str = '', isadmin: int = 0) -> Query:
+def create_or_update_user_query(id: int, name: str, tgusername: str, chatid: int, birthday: str = '', isadmin: int = 0) -> Query:
     bound_params = {
         'id': id,
         'name': name,
@@ -15,8 +15,7 @@ def create_user_query(id: int, name: str, tgusername: str, chatid: int, birthday
         '''
         INSERT INTO user(id, name, tgusername, chatid, birthday, isadmin)
         VALUES(:id, :name, :tgusername, :chatid, :birthday, :isadmin)
-        ON CONFLICT(id) DO UPDATE SET name=:name, tgusername=:tgusername, chatid=:chatid, birthday=:birthday, isadmin=:isadmin
-        RETURNING id;
+        ON CONFLICT(id) DO UPDATE SET name=:name, tgusername=:tgusername, chatid=:chatid, birthday=:birthday, isadmin=:isadmin;
         ''',
         bound_params,
     )
