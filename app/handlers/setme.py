@@ -7,7 +7,6 @@ from telegram.ext import (
     Filters,
 )
 from app.config import config
-from app.exceptions import handle_any_error
 from database.ext.users import get_user_by_id, save_user
 
 from app.enums import CommandSetmeStates
@@ -15,7 +14,6 @@ from app.enums import CommandSetmeStates
 from app.auth import auth
 
 
-@handle_any_error
 @auth(set_user=False)
 def handle_entry_point(update: Update, context: CallbackContext) -> int:
     message = "Send me your birthday in format: dd.mm, for example 03.01"
@@ -23,7 +21,6 @@ def handle_entry_point(update: Update, context: CallbackContext) -> int:
     return CommandSetmeStates.SET
 
 
-@handle_any_error
 def handle_success(update: Update, context: CallbackContext) -> int:
     user_id = update.message.from_user.id
     user = get_user_by_id(user_id)
@@ -34,7 +31,6 @@ def handle_success(update: Update, context: CallbackContext) -> int:
     return ConversationHandler.END
 
 
-@handle_any_error
 def fallback(update: Update, context: CallbackContext) -> int:
     message = "Hmm, i guess there is a typo, try again please"
     context.bot.send_message(chat_id=update.message.chat_id, text=message)

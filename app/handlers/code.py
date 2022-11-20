@@ -7,13 +7,11 @@ from telegram.ext import (
     Filters,
 )
 from app.config import config
-from app.exceptions import handle_any_error
 from database.ext.users import get_user_by_id, save_user
 
 from app.enums import CommandCodeStates
 
 
-@handle_any_error
 def handle_entry_point(update: Update, context: CallbackContext) -> int:
     context.bot.send_message(
         chat_id=update.message.chat_id,
@@ -23,7 +21,6 @@ def handle_entry_point(update: Update, context: CallbackContext) -> int:
     return CommandCodeStates.CHECK
 
 
-@handle_any_error
 def fallback(update: Update, context: CallbackContext) -> int:
     message = 'Incorrect code 🙂'
     context.bot.send_message(chat_id=update.message.chat_id, text=message)
@@ -31,7 +28,6 @@ def fallback(update: Update, context: CallbackContext) -> int:
     return ConversationHandler.END
 
 
-@handle_any_error
 def admin_code(update: Update, context: CallbackContext) -> int:
     message = 'Hello, mister admin 😎 Type /help to see all available commands'
     tg_user = update.message.from_user
@@ -55,7 +51,6 @@ def admin_code(update: Update, context: CallbackContext) -> int:
     return ConversationHandler.END
 
 
-@handle_any_error
 def club_code(update: Update, context: CallbackContext) -> int:
     message = 'You rock 🥳 Type /help to see all available commands'
     tg_user = update.message.from_user

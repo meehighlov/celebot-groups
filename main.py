@@ -1,3 +1,6 @@
+import logging
+from app.exceptions import error_handler
+from app.logger import init_logging
 from database.create import rollout as init_db
 
 from telegram.ext import Updater, CommandHandler
@@ -14,8 +17,14 @@ from app.handlers.setme import handle as setme_command_handler
 from app.handlers.chat import handle as chat_command_handler
 
 
+logger = logging.getLogger(__name__)
+
+
 def main() -> None:
+    init_logging()
     init_db()
+
+    logger.info('database is ready')
 
     updater = Updater(config.BOTTOKEN_CELEBOT)
 
@@ -28,7 +37,12 @@ def main() -> None:
     dispatcher.add_handler(setme_command_handler)
     dispatcher.add_handler(code_command_handler)
 
+    dispatcher.add_error_handler(error_handler)
+
     updater.start_polling()
+
+    msg = f'polling launched, {config.APP_NAME} is up and ready'
+    logger.info(msg)
     updater.idle()
 
 

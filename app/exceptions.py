@@ -1,28 +1,28 @@
+import logging
+import traceback
+import json
 from functools import wraps
 
-from telegram import Update
+from telegram import Update, ParseMode
 from telegram.ext import CallbackContext
 
-from app.logger import log
+from app.config import config
 
 # TODO add more type hints
 
+logger = logging.getLogger(__name__)
 
-def handle_any_error(handler):
-    @wraps
-    def error_handler(update: Update, context: CallbackContext, *args, **kwargs):
-        try:
-            return handler(update, context, *args, **kwargs)
-        except Exception as e:
-            exc_text = str(e)
-            try:
-                context.bot.send_message(
-                    chat_id=update.message.chat_id,
-                    text="Ooops, there is a problem occured, i'm working on it 😅"
-                )
-            except Exception as sending_exc:
-                exc_text += '\nwarning message was not sent due to: {sending_exc}'
 
-            log(exc_text)
+def error_handler(update: Update, context: CallbackContext):
+    logger.error(msg="Exception while handling an update:", exc_info=context.error)
+    tb_list = traceback.format_exception(None, context.error, context.error.__traceback__)
+    tb_string = "".join(tb_list)
+    update_str = update.to_dict() if isinstance(update, Update) else str(update)
+    message = json.dumps(update_str, indent=2, ensure_ascii=False)
 
-    return error_handler
+    logger.error(message + ' with treaceback: ' + tb_string)
+
+    try:
+        context.bot.send_message(chat_id=config.MY_CHAT_ID)
+    except Exception as e:
+        logger.error('failed to send error info due to: ' + str(e))

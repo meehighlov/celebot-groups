@@ -2,11 +2,9 @@ from telegram import Update
 from telegram.ext import CallbackContext
 
 from app.auth import auth
-from app.exceptions import handle_any_error
 from database.models import User
 
 
-@handle_any_error
 @auth(set_user=True)
 def handle(update: Update, context: CallbackContext, user: User):
     birth_day = user.birth_day

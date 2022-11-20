@@ -14,6 +14,7 @@ class Config(BaseSettings):
     ADMINCODE: str
     CLUBCODE: str
     LOG_FILE: str
+    MY_CHAT_ID: int
 
 
 config = Config()

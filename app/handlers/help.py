@@ -1,6 +1,5 @@
 from telegram import Update
 from telegram.ext import CallbackContext
-from app.exceptions import handle_any_error
 
 from database.ext.users import get_user_by_id
 
@@ -28,7 +27,6 @@ def command_list_for_admin() -> list[str]:
     ]
 
 
-@handle_any_error
 def handle(update: Update, context: CallbackContext):
     user_id: int = update.message.from_user.id
     user = get_user_by_id(user_id)
