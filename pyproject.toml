@@ -4,7 +4,6 @@ version = "0.1.0"
 description = ""
 authors = ["meehighlov"]
 readme = "README.md"
-packages = [{include = "celebot_groups"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
