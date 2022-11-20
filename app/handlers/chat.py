@@ -10,7 +10,7 @@ def handle(update: Update, context: CallbackContext):
     message = []
     for user in get_all_users():
         message.append(
-            f'{user.name} {user.tgusername} {user.birthday}'
+            f'{user.name} @{user.tgusername} {user.birthday}'
         )
 
     message = '\n'.join(message)
