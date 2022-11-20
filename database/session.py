@@ -5,8 +5,9 @@ from database.query import Query
 
 class session:
 
-    def __init__(self) -> None:
-        self.connection = sqlite3.connect(config.APP_NAME + '.db')
+    def __init__(self, db_name: str = None) -> None:
+        db_name = db_name or config.APP_NAME + '.db'
+        self.connection = sqlite3.connect(db_name)
 
     def execute(self, query: Query, many: bool = False, commit: bool = False) -> sqlite3.Cursor:
         if self.connection is None:
