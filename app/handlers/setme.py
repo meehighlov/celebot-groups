@@ -34,7 +34,7 @@ def handle_success(update: Update, context: CallbackContext) -> int:
 def fallback(update: Update, context: CallbackContext) -> int:
     message = "Hmm, i guess there is a typo, try again please"
     context.bot.send_message(chat_id=update.message.chat_id, text=message)
-    return ConversationHandler.SET
+    return CommandSetmeStates.SET
 
 
 handle = ConversationHandler(
