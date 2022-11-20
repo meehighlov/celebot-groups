@@ -1,10 +1,12 @@
 from telegram import Update
 from telegram.ext import CallbackContext
+from app.exceptions import handle_any_error
 
 from database.ext.users import get_all_users
 from app.auth import auth
 
 
+@handle_any_error
 @auth(set_user=False)
 def handle(update: Update, context: CallbackContext):
     message = []

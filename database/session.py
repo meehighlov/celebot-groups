@@ -1,7 +1,5 @@
 import sqlite3
-from contextlib import contextmanager
 from app.config import config
-from app.logger import log
 from database.query import Query
 
 
@@ -47,7 +45,6 @@ class session:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         if exc_type is not None:
-            log(exc_val)
             self.rollback()
             return
 

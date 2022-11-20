@@ -8,10 +8,12 @@ dotenv.load_dotenv()
 
 class Config(BaseSettings):
     APP_NAME: str = Field('celebotgroups', const=True)
+    CONVERSATION_TIMEOUT: float = Field(60.0, const=True)
+
     BOTTOKEN_CELEBOT: str  # noqa
     ADMINCODE: str
     CLUBCODE: str
-    CONVERSATION_TIMEOUT: float = 60.0
+    LOG_FILE: str
 
 
 config = Config()
