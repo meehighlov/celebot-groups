@@ -45,3 +45,17 @@ def get_all_users_query() -> Query:
     )
 
     return query
+
+
+def delete_user_by_id_query(id_: int) -> Query:
+    bound_params = {
+        'id': id_
+    }
+    query = Query(
+        '''
+        DELETE FROM user WHERE id=:id;
+        ''',
+        bound_params,
+    )
+
+    return query
