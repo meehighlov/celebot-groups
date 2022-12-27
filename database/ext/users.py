@@ -3,7 +3,8 @@ from database.session import session
 
 
 from database.models import User
-from database.raw.users import create_or_update_user_query, get_all_users_query, get_user_by_id_query
+from database.raw.users import create_or_update_user_query, get_all_users_query, get_user_by_id_query, \
+    delete_user_by_id_query
 
 
 def get_user_by_id(user_id: int) -> t.Optional[User]:
@@ -27,3 +28,11 @@ def get_all_users() -> list[User]:
         for user in s.execute(q):
             users.append(User(*user))
         return users
+
+
+def delete_user_by_id(user_id: int) -> t.Optional[User]:
+    q = delete_user_by_id_query(user_id)
+    with session() as s:
+        r = s.execute(q).fetchone()
+        if r:
+            return User(*r)
