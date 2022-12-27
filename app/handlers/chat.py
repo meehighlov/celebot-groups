@@ -10,6 +10,7 @@ def handle(update: Update, context: CallbackContext):
     message = []
     for user in get_all_users():
         message.append(
+            #   todo: remove extra '@'
             f'{user.name} @{user.tgusername} {user.birthday}'
         )
 
