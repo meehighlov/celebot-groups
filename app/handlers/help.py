@@ -24,6 +24,7 @@ def command_list_for_admin() -> list[str]:
         '/setme - set your birthday',
         '/code - pass access code',
         '/chat - show all birthdays in chat',
+        '/del - delete birthday from list',
     ]
 
 
