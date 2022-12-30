@@ -16,8 +16,10 @@ logger = logging.getLogger(__name__)
 class CelebotError(Exception):
     pass
 
+
 class UserNotFoundError(CelebotError):
     pass
+
 
 def error_handler(update: Update, context: CallbackContext):
     logger.error(msg="Exception while handling an update:", exc_info=context.error)
