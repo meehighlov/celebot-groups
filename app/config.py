@@ -1,6 +1,7 @@
 import dotenv
+import os.path
 
-from pydantic import BaseSettings, Field
+from pydantic import BaseSettings, Field, validator
 
 
 dotenv.load_dotenv()
@@ -16,5 +17,10 @@ class Config(BaseSettings):
     LOG_FILE: str
     MY_CHAT_ID: int
 
+    @validator('LOG_FILE')
+    def check_logfile_if_exists(cls, value):
+        if not os.path.isfile(value):
+            raise ValueError(f'Logfile {value!r} does not exists')
+        return value
 
 config = Config()
