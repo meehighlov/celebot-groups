@@ -1,9 +1,9 @@
-.PHONY: up down build
+.PHONY: up stop build
 
 up:
 	docker compose up -d
 
-down:
+stop:
 	docker compose down
 
 build:
