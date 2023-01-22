@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  python:
+    container_name: celeBotPython
+    build:
+      context: .
+      dockerfile: docker/python/Dockerfile
+      args:
+        - LOG_FILE=${LOG_FILE}
+    volumes:
+      - ./:/usr/src/app
+    env_file:
+      - .env
