@@ -12,5 +12,4 @@ build:
 .PHONY:
 	start
 
-start:
-	build up
+start: build up
